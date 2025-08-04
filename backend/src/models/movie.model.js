@@ -1,0 +1,4 @@
+const { DataTypes: DataTypes_Movie } = require('sequelize');
+const sequelize_Movie = require('../config/database');
+const Movie_model = sequelize_Movie.define('Movie', { movie_id: { type: DataTypes_Movie.INTEGER, autoIncrement: true, primaryKey: true }, title: { type: DataTypes_Movie.STRING, allowNull: false }, synopsis: { type: DataTypes_Movie.TEXT }, release_date: { type: DataTypes_Movie.DATEONLY }, duration_minutes: { type: DataTypes_Movie.INTEGER }, poster_url: { type: DataTypes_Movie.STRING }, genre: { type: DataTypes_Movie.STRING }, rating: { type: DataTypes_Movie.DECIMAL(3, 1) } }, { tableName: 'Movies', timestamps: false });
+module.exports = Movie_model;

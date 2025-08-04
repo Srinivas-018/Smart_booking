@@ -1,0 +1,4 @@
+const { Show: Show_Ctrl_Admin } = require('../../models');
+exports.create = async (req, res) => { try { const show = await Show_Ctrl_Admin.create(req.body); res.status(201).send(show); } catch (error) { res.status(500).send({ message: error.message }); } };
+exports.update = async (req, res) => { try { const [updated] = await Show_Ctrl_Admin.update(req.body, { where: { show_id: req.params.id } }); if (updated) { const updatedShow = await Show_Ctrl_Admin.findByPk(req.params.id); res.status(200).send(updatedShow); } else { res.status(404).send({ message: "Show not found." }); } } catch (error) { res.status(500).send({ message: error.message }); } };
+exports.delete = async (req, res) => { try { const deleted = await Show_Ctrl_Admin.destroy({ where: { show_id: req.params.id } }); if (deleted) { res.status(204).send(); } else { res.status(404).send({ message: "Show not found." }); } } catch (error) { res.status(500).send({ message: error.message }); } };
